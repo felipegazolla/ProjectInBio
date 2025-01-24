@@ -13,9 +13,7 @@ export function ProjectCard() {
           10 Cliques
         </span>
         <div className="flex flex-col">
-          <span className="text-white font-bold text-xl">
-            Projeto 1
-          </span>
+          <span className="text-white font-bold text-xl">Projeto 1</span>
           <span className="text-content-body text-sm">
             Descrição super detalhada do projeto
           </span>
