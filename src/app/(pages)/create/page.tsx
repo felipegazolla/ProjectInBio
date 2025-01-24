@@ -1,4 +1,4 @@
-import { Header } from '@/components/landing/Header'
+import { Header } from '@/components/ui/Header'
 import { Button } from '@/components/ui/Button'
 import { TextInput } from '@/components/ui/TextInput'
 import { Rocket } from 'lucide-react'

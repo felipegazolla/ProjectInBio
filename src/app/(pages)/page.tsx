@@ -1,5 +1,5 @@
 import { Faq } from '@/components/landing/Faq'
-import { Header } from '@/components/landing/Header'
+import { Header } from '@/components/ui/Header'
 import { Hero } from '@/components/landing/Hero'
 import { Pricing } from '@/components/landing/Pricing'
 import { VideoExplanation } from '@/components/landing/VideoExplanation'

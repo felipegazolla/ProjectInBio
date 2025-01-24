@@ -1,4 +1,4 @@
-import { Header } from '@/components/landing/Header'
+import { Header } from '@/components/ui/Header'
 import { Button } from '@/components/ui/Button'
 
 export default async function UpgradePage() {
