@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
             if (userEmail) {
               resend.emails.send({
-                from: 'onboarding@resend.dev',
+                from: 'project-in-bio.dev',
                 to: userEmail,
                 subject: 'Seu boleto para pagamento',
                 text: `Aqui está o seu boleto: ${hostedVoucherUrl}`,
