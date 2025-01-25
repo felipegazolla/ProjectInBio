@@ -1,5 +1,6 @@
 'use client'
-import { useOnClickOutside } from '@/hooks/useOnClickOutside'
+
+import useOnClickOutside from '@/hooks/useOnClickOutside'
 import { useRef } from 'react'
 
 export function Modal({

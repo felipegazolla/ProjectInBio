@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 
-export function useOnClickOutside(
-  ref: React.RefObject<HTMLDivElement>,
+export default function useOnClickOutside(
+  ref: React.RefObject<HTMLDivElement | null>,
   handler?: (event: MouseEvent | TouchEvent) => void
 ) {
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
       const target = event.target as HTMLElement
+
       if (!ref.current || ref.current.contains(target)) {
         return
       }
@@ -15,8 +16,10 @@ export function useOnClickOutside(
         handler(event)
       }
     }
+
     document.addEventListener('mousedown', listener)
     document.addEventListener('touchstart', listener)
+
     return () => {
       document.removeEventListener('mousedown', listener)
       document.removeEventListener('touchstart', listener)
