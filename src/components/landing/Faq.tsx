@@ -32,10 +32,16 @@ const faqItems = [
 ]
 export function Faq() {
   return (
-    <div className="my-20 flex flex-col items-center gap-16">
-      <h3 className="text-4xl font-bold text-white">Dúvidas frequentes</h3>
-      <div className="flex gap-3">
-        <div className="flex flex-col gap-3">
+    <div className="my-20 flex flex-col items-center gap-12 px-4 sm:px-8 lg:px-0">
+      {/* Título */}
+      <h3 className="text-3xl lg:text-4xl font-bold text-white text-center">
+        Dúvidas frequentes
+      </h3>
+
+      {/* FAQ Items */}
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-12">
+        {/* Coluna 1 */}
+        <div className="flex flex-col gap-6">
           {faqItems.slice(0, Math.ceil(faqItems.length / 2)).map(item => (
             <FAQItem
               key={item.title}
@@ -44,7 +50,8 @@ export function Faq() {
             />
           ))}
         </div>
-        <div className="flex flex-col gap-3">
+        {/* Coluna 2 */}
+        <div className="flex flex-col gap-6">
           {faqItems.slice(Math.ceil(faqItems.length / 2)).map(item => (
             <FAQItem
               key={item.title}
@@ -57,6 +64,7 @@ export function Faq() {
     </div>
   )
 }
+
 function FAQItem({
   title,
   description,
@@ -65,9 +73,9 @@ function FAQItem({
   description: string
 }) {
   return (
-    <div className="w-[351px] mb-10 h-min flex flex-col gap-3 p-5 rounded-2xl border borber border-border-primary bg-background-primary">
+    <div className="w-full max-w-[351px] lg:w-[351px] flex flex-col gap-4 p-6 rounded-2xl border border-border-primary bg-background-primary">
       <p className="font-bold text-white">{title}</p>
-      <p className="text-content-body">{description}</p>
+      <p className="text-content-body text-sm lg:text-base">{description}</p>
     </div>
   )
 }

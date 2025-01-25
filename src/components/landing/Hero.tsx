@@ -12,33 +12,40 @@ export default function Hero({
   }
 }) {
   return (
-    <div className="flex h-screen">
-      <div className="w-full flex flex-col gap-2 mt-[35vh]">
-        <h1 className="text-5xl font-bold text-white leading-[64px]">
+    <div className="flex flex-col lg:flex-row h-auto lg:h-screen">
+      {/* Texto e Botão */}
+      <div className="w-full flex flex-col gap-4 mt-16 lg:mt-[35vh] px-6 lg:px-12 text-center lg:text-left">
+        <h1 className="text-4xl lg:text-5xl font-bold text-white leading-tight lg:leading-[64px]">
           {texts?.title || 'Seus projetos e redes sociais em um único link'}
         </h1>
-        <h2 className="text-xl leading-6">
+        <h2 className="text-lg lg:text-xl text-gray-200 leading-6">
           {texts?.description ||
-            'Crie sua própria página de projetos e compartilhe eles com mundo.'}
+            'Crie sua própria página de projetos e compartilhe eles com o mundo.'}
           <br />
           Acompanhe o engajamento com Analytics de cliques
         </h2>
-        <CreateNow />
+        <div className="mt-4">
+          <CreateNow />
+        </div>
       </div>
-      <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
-        <div className="relative">
+
+      {/* Imagem e Cartões */}
+      <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)] py-12 lg:py-0">
+        <div className="relative max-w-sm lg:max-w-none">
           <UserCard isOwner={false} />
-          <div className="absolute -bottom-[23%] -right-[45%]">
+          {/* TotalVisits */}
+          <div className="absolute -bottom-12 lg:-bottom-[23%] right-4 lg:-right-[45%]">
             <TotalVisits totalVisits={4923} />
           </div>
-          <div className="absolute top-[20%] -left-[45%] -z-10">
+          {/* Cartões de Projetos */}
+          <div className="absolute top-10 left-4 lg:top-[20%] lg:-left-[45%] -z-10">
             <ProjectCard
               name="Petshop"
               description="A platform to buy and sell pet products."
               img={'/1.svg'}
             />
           </div>
-          <div className="absolute -top-[5%] -left-[55%] -z-10">
+          <div className="absolute -top-10 left-10 lg:-top-[5%] lg:-left-[55%] -z-10">
             <ProjectCard
               name="Drink Marketplace"
               description="A platform to buy and sell beverages."
