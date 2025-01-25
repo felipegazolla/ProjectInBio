@@ -1,8 +1,7 @@
 import { ProjectCard } from '../commons/ProjectCard'
 import { TotalVisits } from '../commons/TotalVisits'
 import UserCard from '../commons/userCard/UserCard'
-import { Button } from '../ui/Button'
-import { TextInput } from '../ui/TextInput'
+import CreateNow from '../ui/CreateNow'
 
 export async function Hero() {
   return (
@@ -16,29 +15,25 @@ export async function Hero() {
           <br />
           Acompanhe o engajamento com Analytics de cliques
         </h2>
-        <div className="flex items-center gap-2 w-full mt-[10vh]">
-          <span className="text-white text-xl">projectinbio.com/</span>
-          <TextInput placeholder="Seu Link" />
-          <Button>Criar agora</Button>
-        </div>
+        <CreateNow />
       </div>
       <div className="w-full flex items-center justify-center bg-[radial-gradient(circle_at_50%_50%,#4B2DBB,transparent_55%)]">
         <div className="relative">
-          <UserCard isOwner={false}/>
+          <UserCard isOwner={false} />
           <div className="absolute -bottom-[23%] -right-[45%]">
-            <TotalVisits totalVisits={4923}/>
+            <TotalVisits totalVisits={4923} />
           </div>
           <div className="absolute top-[20%] -left-[45%] -z-10">
             <ProjectCard
-                name='Petshop'
-                description="A platform to buy and sell pet products."
+              name="Petshop"
+              description="A platform to buy and sell pet products."
               img={'/1.svg'}
             />
           </div>
           <div className="absolute -top-[5%] -left-[55%] -z-10">
             <ProjectCard
-                name='Drink Marketplace'
-                description='A platform to buy and sell beverages.'
+              name="Drink Marketplace"
+              description="A platform to buy and sell beverages."
               isOwner={true}
               img={'/2.svg'}
             />

@@ -4,7 +4,7 @@ import UserCard from '@/components/commons/userCard/UserCard'
 import { auth } from '@/lib/auth'
 import { getProfileData, getProfileProjects } from '@/server/getProfileData'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { NewProject } from './NewProject'
 import { getDownloadURLFromPath } from '@/lib/firebase'
 import { increaseProfileVisits } from '@/app/actions/increaseProfileVisits'
@@ -27,17 +27,23 @@ export default async function ProfilePage({
     await increaseProfileVisits(profileId)
   }
 
+  if (isOwner && !session?.user.isSubscribed && !session?.user.isTrial) {
+    redirect(`/${profileId}/upgrade`)
+  }
+
   return (
     <div className="relative  h-screen flex p-20 overflow-hidden">
-      <div className="fixed  top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
-        <span>Você está usando a versão trial.</span>
-        <Link href={`/${profileId}/upgrade`}>
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-          <button className="text-accent-green font-bold">
-            Faça o upgrade agora!
-          </button>
-        </Link>
-      </div>
+      {session?.user.isTrial && !session.user.isSubscribed && (
+        <div className="fixed top-0 left-0 w-full flex justify-center items-center gap-1 py-2 bg-background-tertiary">
+          <span>Você está usando a versão trial.</span>
+          <Link href={`/${profileId}/upgrade`}>
+            {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+            <button className="text-accent-green font-bold">
+              Faça o upgrade agora!
+            </button>
+          </Link>
+        </div>
+      )}
       <div className="w-1/2 flex justify-center h-min">
         <UserCard profileData={profileData} isOwner={isOwner} />
       </div>
@@ -54,7 +60,7 @@ export default async function ProfilePage({
       </div>
       {isOwner && (
         <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-          <TotalVisits totalVisits={profileData.totalVisits} />
+          <TotalVisits totalVisits={profileData.totalVisits} showBar />
         </div>
       )}
     </div>
