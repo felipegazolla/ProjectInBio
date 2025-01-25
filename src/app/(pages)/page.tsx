@@ -9,7 +9,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto h-screen">
       <Header />
       <Hero />
-      <VideoExplanation />
+      {/* <VideoExplanation /> */}
       <Pricing />
       <Faq />
     </div>
