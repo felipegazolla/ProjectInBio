@@ -1,6 +1,12 @@
 import { Header } from '@/components/ui/Header'
 import { Rocket } from 'lucide-react'
 import { CreateLinkForm } from './CreateLinkForm'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata ={
+  title: "Project-In-Bio - Create",
+  description: "Project-In-Bio - Create"
+}
 
 export default function CreatePage() {
   return (
