@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
 
     switch (event.type) {
       case 'checkout.session.completed':
+        // Usuario completou o checkout - assinatura ou pagamento unico
         if (event.data.object.payment_status === 'paid') {
           const userId = event.data.object.client_reference_id
           if (userId) {
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
 
             if (userEmail) {
               resend.emails.send({
-                from: 'project-in-bio.dev',
+                from: 'onboarding@resend.dev',
                 to: userEmail,
                 subject: 'Seu boleto para pagamento',
                 text: `Aqui está o seu boleto: ${hostedVoucherUrl}`,
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
 
         break
       case 'checkout.session.async_payment_succeeded':
+        // Usuario pagou o boleto
         if (event.data.object.payment_status === 'paid') {
           const userId = event.data.object.client_reference_id
           if (userId) {
@@ -67,8 +69,10 @@ export async function POST(req: NextRequest) {
           }
         }
         break
-      case 'customer.subscription.deleted': {
+      case 'customer.subscription.deleted':
+        // biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
         const subscription = event.data.object
+        // biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
         const customerId = subscription.customer as string
 
         if (customerId) {
@@ -76,7 +80,8 @@ export async function POST(req: NextRequest) {
             customerId
           )) as Stripe.Customer
 
-          if (customer?.metadata.userId) {
+          // biome-ignore lint/complexity/useOptionalChain: <explanation>
+          if (customer && customer.metadata.userId) {
             const userId = customer.metadata.userId
 
             await db.collection('users').doc(userId).update({
@@ -85,7 +90,6 @@ export async function POST(req: NextRequest) {
           }
         }
         break
-      }
     }
 
     return new NextResponse(null, { status: 200 })
