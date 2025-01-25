@@ -12,11 +12,11 @@ export default function EditSocialLinks({
   socialMedias,
 }: {
   socialMedias?: {
-    github: string;
-    instagram: string;
-    linkedin: string;
-    facebook: string;
-  };
+    github: string
+    instagram: string
+    linkedin: string
+    facebook: string
+  }
 }) {
   const router = useRouter()
   const [isModalOpen, setIsModalOpen] = useState(false)

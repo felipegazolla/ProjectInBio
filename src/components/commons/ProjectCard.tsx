@@ -39,7 +39,9 @@ export function ProjectCard({
             </span>
           )}
           <div className="flex flex-col">
-            <span className="text-white font-bold">{name || project?.projectName}</span>
+            <span className="text-white font-bold">
+              {name || project?.projectName}
+            </span>
             <span className="text-content-body text-sm">
               {description || project?.projectDescription}
             </span>
